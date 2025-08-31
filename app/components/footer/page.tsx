@@ -23,7 +23,7 @@ function Footer() {
                      </div>
 
                      <div>
-                          <ul className='flex flex-col text-center lg:flex-row gap-10'>
+                          <ul className='flex flex-col text-center lg:flex-row gap-5'>
                           <li className='cursor-pointer'>HOME</li>
                         <li className='cursor-pointer'>GENRE</li>
                         <li className='cursor-pointer'>COUNTRY</li>

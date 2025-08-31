@@ -10,6 +10,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { IoNotificationsOutline } from "react-icons/io5";
 import ThemeToggle from '../toggle';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
 // import { Link } from 'react-router-dom';
 
 function NavPage() {
@@ -42,12 +43,12 @@ return (
 
                     <div>
                                     <ul className='hidden lg:flex gap-10'>
-                                            <li className='cursor-pointer'>HOME</li>
+                                            <Link href='/'><li className='cursor-pointer'>HOME</li></Link>
                                             <li className='cursor-pointer'>GENRE</li>
                                             <li className='cursor-pointer'>COUNTRY</li>
-                                          <li className='cursor-pointer'>MOVIES</li>
-                                           <li className='cursor-pointer'>TV SERIES</li>
-                                            <li className='cursor-pointer'>NEWS & POPULAR</li>
+                                             <Link href='/movies'><li className='cursor-pointer'>MOVIES</li></Link>   
+                                                <Link href='/series'><li className='cursor-pointer'>TV SERIES</li></Link>
+                                                <Link href ='/popular'><li className='cursor-pointer'>POPULAR</li></Link>
                                     </ul>
                             </div>
 

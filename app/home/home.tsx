@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
+import Link from "next/link";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
 const POSTER_SIZE = "w200";
@@ -40,6 +41,7 @@ const MovieSeries = () => {
     fetchMovies();
   }, [moviesURL]);
 
+
   if (loading)
     return <p className="text-center text-gray-900 mt-4 text-3xl">Loading...</p>;
 
@@ -47,14 +49,18 @@ const MovieSeries = () => {
 
   if (movies.length === 0) return <p>No movies found</p>;
 
+
+  const newMoive = movies.slice(0, 10);
+
   return (
     <div className="px-6 py-4">
       <h1 className="text-2xl font-bold mb-4 text-gray-600 pt-5">
         Popular Movies
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 lg:mx-24">
-        {movies.map((movie) => (
-          <div
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-7 lg:mx-24">
+        {newMoive.map((movie) => (
+         <Link href={`/movie-detail/${movie.id}`} key={movie.id}>
+           <div
             key={movie.id}
             className="h-full w-full p-2 rounded shadow-md hover:transform hover:scale-105 transition-transform duration-200 cursor-pointer"
           >
@@ -70,6 +76,7 @@ const MovieSeries = () => {
               <span>{movie.vote_average.toFixed(1)}</span>
             </p>
           </div>
+         </Link>
         ))}
       </div>
     </div>

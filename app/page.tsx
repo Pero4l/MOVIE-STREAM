@@ -1,5 +1,5 @@
 import Image from "next/image";
-import MovieSeries from "./components/home";
+import MovieSeries from "./home/home";
 
 export default function Home() {
   return (
