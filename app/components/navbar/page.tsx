@@ -15,6 +15,7 @@ function NavPage() {
   const { theme } = useTheme();
   const [isClicked, setIsClicked] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [click, setClick] = useState(false);
   const router = useRouter();
 
   const handleClick = () => {
@@ -25,6 +26,8 @@ function NavPage() {
     e.preventDefault();
     if (!searchTerm.trim()) return;
     router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
+    setClick(false);
+    setSearchTerm('');
   };
 
   return (
@@ -49,8 +52,9 @@ function NavPage() {
         </div>
 
         {/* Theme Toggle */}
-        <div>
+        <div className=' flex items-center text-3xl gap-3'>
           <ThemeToggle />
+          <IoIosSearch className='lg:hidden flex ' onClick={()=> setClick(!click)}/>
         </div>
 
         {/* Search + User */}
@@ -68,6 +72,8 @@ function NavPage() {
             />
           </form>
 
+          
+
           {/* User/Login */}
           <div className='hidden lg:flex items-center'>
             <LuUser className='text-3xl' />
@@ -83,14 +89,27 @@ function NavPage() {
         </div>
       </nav>
 
+      {/*  */}
+
+            <form onSubmit={handleSearchSubmit} className={click ? 'flex items-center justify-center pt-3' : 'hidden'}>
+            <IoIosSearch className='text-2xl relative left-9 text-black' />
+            <input
+              type='text'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder='Enter Keyword'
+              className='bg-white rounded-full text-black px-12 py-2'
+            />
+          </form>
+
       {/* Mobile Dropdown Menu */}
       <ul className={isClicked ? 'lg:hidden flex flex-col gap-5 bg-black text-white p-5 text-center' : "hidden"}>
-        <div onClick={() => setIsClicked(false)}><li className='cursor-pointer'>HOME</li></div>
+        <Link href='/' onClick={() => setIsClicked(false)}><li className='cursor-pointer'>HOME</li></Link>
         <li className='cursor-pointer' onClick={() => setIsClicked(false)}>GENRE</li>
         <li className='cursor-pointer' onClick={() => setIsClicked(false)}>COUNTRY</li>
-        <div onClick={() => setIsClicked(false)}><li className='cursor-pointer'>MOVIES</li></div>
-        <div onClick={() => setIsClicked(false)}><li className='cursor-pointer'>TV SERIES</li></div>
-        <div onClick={() => setIsClicked(false)}><li className='cursor-pointer'>NEWS & POPULAR</li></div>
+        <Link href='/movies' onClick={() => setIsClicked(false)}><li className='cursor-pointer'>MOVIES</li></Link>
+        <Link href='/series' onClick={() => setIsClicked(false)}><li className='cursor-pointer'>TV SERIES</li></Link>
+        <Link href='/popular' onClick={() => setIsClicked(false)}><li className='cursor-pointer'>POPULAR</li></Link>
       </ul>
     </div>
   );

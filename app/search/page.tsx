@@ -89,7 +89,7 @@ const SearchPage = () => {
 
       {/* Results */}
       {results.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 pt-44">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {results.map((item) => (
             <Link
               key={item.id}
@@ -99,7 +99,7 @@ const SearchPage = () => {
                   : `/series-detail/${item.id}`
               }
             >
-              <div className="p-2 rounded shadow hover:scale-105 transition-transform cursor-pointer pt-20">
+              <div className="p-2 rounded shadow hover:scale-105 transition-transform cursor-pointer pt-10">
                 <img
                   src={
                     item.poster_path
